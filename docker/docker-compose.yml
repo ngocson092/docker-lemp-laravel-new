@@ -37,7 +37,6 @@ services:
     networks:
       - app-network
   nginx:
-    profiles: ['main']
     build:
       dockerfile: Dockerfile
       context: "./nginx"
