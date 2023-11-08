@@ -5,7 +5,7 @@ services:
       args:
         user: www
         uid: 1000
-      context: ./
+      context: ./php
       dockerfile: Dockerfile
     container_name: php
     restart: unless-stopped
