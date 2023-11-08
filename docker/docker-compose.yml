@@ -36,6 +36,25 @@ services:
       - ./mysql/docker-entrypoint-initdb.d/:/docker-entrypoint-initdb.d/
     networks:
       - app-network
+  nginx:
+    profiles: ['main']
+    build:
+      dockerfile: Dockerfile
+      context: "./nginx"
+    container_name: nginx
+    restart: unless-stopped
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - ./docker/nginx/conf.d/:/etc/nginx/conf.d/
+      - ./docker/nginx/logs/:/var/log/nginx/
+      - ./docker/nginx/ssl/:/etc/letsencrypt
+    depends_on:
+      - php
+      - db
+    networks:
+      - app-network
 
   nginx:
     image: nginx:alpine
