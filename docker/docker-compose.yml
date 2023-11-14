@@ -3,13 +3,14 @@ services:
   php:
     build:
       args:
-        user: www
-        uid: 1000
+        APP_UID: ${APP_UID}
+        APP_GID: ${APP_GID}
       context: ./php
       dockerfile: Dockerfile
     container_name: php
     restart: unless-stopped
     working_dir: /var/www/
+    entrypoint: [ "bash", "-c", "cron -f"] 
     depends_on:
       - db
     volumes:
