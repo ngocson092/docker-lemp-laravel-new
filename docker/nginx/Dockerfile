@@ -27,5 +27,5 @@ ADD docker-entrypoint.sh .
 
 # make certs dir as volume
 VOLUME ["/etc/letsencrypt"]
-RUN chown 777 /etc/nginx/docker-entrypoint.sh
+RUN chmod 777 /etc/nginx/docker-entrypoint.sh
 CMD ["/etc/nginx/docker-entrypoint.sh"]
