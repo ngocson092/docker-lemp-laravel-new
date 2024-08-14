@@ -1,7 +1,5 @@
 version: "3.7"
 services:
-
-
   redis:
     container_name: 'redis'
     image: redis:latest
@@ -19,7 +17,7 @@ services:
     container_name: php
     restart: unless-stopped
     working_dir: /var/www/
-    entrypoint: [ "bash", "-c", "php-fpm"] 
+    entrypoint: [ "bash", "-c", "cron  && php-fpm"] 
     depends_on:
       - db
       - redis
