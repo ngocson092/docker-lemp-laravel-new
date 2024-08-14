@@ -1,5 +1,14 @@
 version: "3.7"
 services:
+
+
+  redis:
+    container_name: 'redis'
+    image: redis:latest
+    ports:
+      - "6379:6379"
+    networks:
+      - app-network
   php:
     build:
       args:
@@ -10,9 +19,10 @@ services:
     container_name: php
     restart: unless-stopped
     working_dir: /var/www/
-    entrypoint: [ "bash", "-c", "cron -f"] 
+    entrypoint: [ "bash", "-c", "php-fpm"] 
     depends_on:
       - db
+      - redis
     volumes:
       - ../src:/var/www
       - ./php/local.ini:/usr/local/etc/php/conf.d/local.ini
