@@ -1,3 +1,7 @@
  * * * * * cd /var/www/api && /usr/local/bin/php artisan schedule:run >> /dev/stdout 2>&1
 
 # An empty line is required at the end of this file for a valid cron file.
+# if want to write log to monitor add this line instead above
+# * * * * * cd /var/www/api && /usr/local/bin/php artisan schedule:run >> /var/log/cron.log 2>&1
+
+
